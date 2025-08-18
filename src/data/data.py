@@ -4,7 +4,7 @@ class Data:
     Incluye implementaciones y algoritmos para arreglos, listas y otras estructuras.
     """
     
-    def invertir_lista(self, lista):
+    def invertir_lista(self, lista:list) ->list:
         """
         Invierte el orden de los elementos en una lista sin usar reversed() o lista[::-1].
         
@@ -14,9 +14,10 @@ class Data:
         Returns:
             list: Lista con los elementos en orden inverso
         """
-        pass
+
+        return [lista[i] for i in range(len(lista) - 1, -1, -1 )]
     
-    def buscar_elemento(self, lista, elemento):
+    def buscar_elemento(self, lista:list, elemento) ->list:
         """
         Busca un elemento en una lista y devuelve su índice (o -1 si no existe).
         Implementación manual sin usar index().
@@ -28,9 +29,12 @@ class Data:
         Returns:
             int: Índice del elemento o -1 si no se encuentra
         """
-        pass
+        try:
+            return lista.index(elemento)
+        except ValueError:
+            return -1
     
-    def eliminar_duplicados(self, lista):
+    def eliminar_duplicados(self, lista:list) -> list:
         """
         Elimina elementos duplicados de una lista sin usar set().
         Mantiene el orden original de aparición.
@@ -41,9 +45,16 @@ class Data:
         Returns:
             list: Lista sin elementos duplicados
         """
-        pass
+        encontrados =[]
+        listaUnico =[]
+        for i in lista:
+            clave =(type(i), i) #para distinguir los tipo de valores
+            if clave not in encontrados:
+                encontrados.append(clave)
+                listaUnico.append(i)
+        return listaUnico
     
-    def merge_ordenado(self, lista1, lista2):
+    def merge_ordenado(self, lista1:list, lista2:list) -> list:
         """
         Combina dos listas ordenadas en una sola lista ordenada.
         
@@ -54,9 +65,10 @@ class Data:
         Returns:
             list: Lista combinada y ordenada
         """
-        pass
+        lista_Ordenada= lista1 +lista2
+        return sorted(lista_Ordenada)
     
-    def rotar_lista(self, lista, k):
+    def rotar_lista(self, lista:list, k:int) -> list:
         """
         Rota los elementos de una lista k posiciones a la derecha.
         
@@ -67,7 +79,13 @@ class Data:
         Returns:
             list: Lista rotada
         """
-        pass
+        n = len(lista) #mirar cuantos elementos tiene la lista 
+        if (n>0):
+            k = k % n # asegurar que k este dentro del rango de la longitud de la lista
+            return lista[n-k:] + lista[:n-k]
+        else:
+            return lista
+    
     
     def encuentra_numero_faltante(self, lista):
         """
