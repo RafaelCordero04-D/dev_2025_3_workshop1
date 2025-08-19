@@ -87,7 +87,7 @@ class Data:
             return lista
     
     
-    def encuentra_numero_faltante(self, lista):
+    def encuentra_numero_faltante(self, lista:list) -> int:
         """
         Encuentra el número faltante en una lista de enteros del 1 al n.
         
@@ -97,7 +97,10 @@ class Data:
         Returns:
             int: El número que falta en la secuencia
         """
-        pass
+        n = len(lista) + 1
+        suma = n * (n+1) //  2
+        suma_lista = sum(lista)
+        return suma-suma_lista
     
     def es_subconjunto(self, conjunto1, conjunto2):
         """
@@ -110,7 +113,10 @@ class Data:
         Returns:
             bool: True si conjunto1 es subconjunto de conjunto2, False en caso contrario
         """
-        pass
+        for elemento in conjunto1:
+            if elemento not in conjunto2:
+                return False 
+        return True 
     
     def implementar_pila(self):
         """
@@ -119,7 +125,28 @@ class Data:
         Returns:
             dict: Diccionario con métodos push, pop, peek y is_empty
         """
-        pass
+        pila = []
+
+        def push(elemento):
+            pila.append(elemento)
+
+        def pop():
+            if pila:
+                return pila.pop()
+            return None 
+        def peek ():
+            if pila:
+                return pila[-1]
+            return None
+        def is_empty():
+            return len(pila) == 0
+        
+        return {
+            'push': push,
+            'pop': pop,
+            'peek': peek,
+            'is_empty': is_empty
+        }
     
     def implementar_cola(self):
         """
