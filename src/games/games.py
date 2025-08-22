@@ -1,5 +1,5 @@
 class Games:
-    def piedra_papel_tijera(self, jugador1, jugador2):
+    def piedra_papel_tijera(self, jugador1:str, jugador2:str) -> str:
         """
         Determina el ganador del juego piedra, papel o tijera.
         
@@ -15,6 +15,22 @@ class Games:
             - Tijera vence a papel
             - Papel vence a piedra
         """
+        jugador1 = jugador1.lower() #Para que lea las minusculas y las mayusculas 
+        jugador2 = jugador2.lower()
+
+        reglas = {
+            "piedra":"tijera",
+            "tijera":"papel",
+            "papel":"piedra"
+        }
+        if jugador1 == jugador2:
+            return "empate"
+        elif reglas.get(jugador1) == jugador2:
+            return "jugador1"
+        elif reglas.get(jugador2) == jugador1:
+            return "jugador2"
+        else: 
+            return "invalid" 
         pass
     
     def adivinar_numero_pista(self, numero_secreto, intento):
@@ -28,7 +44,15 @@ class Games:
         Returns:
             str: "correcto", "muy alto" o "muy bajo"
         """
-        pass
+
+        if numero_secreto == intento:
+            return "correcto"
+        elif intento > numero_secreto:
+            return "muy alto"
+        elif intento < numero_secreto:
+            return "muy bajo"
+        else:
+            return "invalido"
     
     def ta_te_ti_ganador(self, tablero):
         """
@@ -45,7 +69,21 @@ class Games:
              ["O", "O", " "],
              [" ", " ", " "]] -> "X"
         """
-        pass
+        for i in range(3):
+            if tablero[i][0] != " " and tablero[i][0] == tablero[i][1] == tablero[i][2]:
+                return tablero[i][0]
+            if tablero[0][i] != " " and tablero[0][i] == tablero[1][i] == tablero[2][i]:
+                return tablero[0][i]
+
+        if tablero [0][0] != " " and tablero [0][0] == tablero [1][1] == tablero[2][2]:
+            return tablero [0][0]
+        if tablero [0][2] != " " and tablero [0][2] == tablero [1][1] == tablero[2][0]:
+            return tablero [0][2]
+        
+        for fila in tablero :
+            if " " in fila:
+                return "continua"
+        return "empate"
     
     def generar_combinacion_mastermind(self, longitud, colores_disponibles):
         """
