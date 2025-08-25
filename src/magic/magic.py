@@ -14,7 +14,11 @@ class Magic:
         Returns:
             int: El n-ésimo número de Fibonacci
         """
-        pass
+        a, b = 0, 1
+        for _ in range(n):
+            a,b = b, a +b
+        return a 
+
     
     def secuencia_fibonacci(self, n):
         """
@@ -26,7 +30,15 @@ class Magic:
         Returns:
             list: Lista con los primeros n números de Fibonacci
         """
-        pass
+        if n <= 0:
+            return []
+        elif n == 1:
+            return [0]
+        
+        fib = [0, 1]
+        for _ in range (2, n):
+            fib.append(fib[-1] + fib[-2])
+        return fib
     
     def es_primo(self, n):
         """
@@ -38,7 +50,13 @@ class Magic:
         Returns:
             bool: True si n es primo, False en caso contrario
         """
-        pass
+        if n < 2:
+            return False
+        for i in range(2, n):
+            if n%i == 0:
+                return False 
+        return True 
+    
     
     def generar_primos(self, n):
         """
@@ -50,7 +68,16 @@ class Magic:
         Returns:
             list: Lista de números primos hasta n
         """
-        pass
+        primo =[]
+        for i in range(2, n + 1):
+            es_primo = True 
+            for j in range(2, int(i**0.5)+1):
+                if i % j == 0:
+                    es_primo = False 
+                    break 
+            if es_primo:
+                primo.append(i)
+        return primo
     
     def es_numero_perfecto(self, n):
         """
@@ -62,7 +89,15 @@ class Magic:
         Returns:
             bool: True si n es un número perfecto, False en caso contrario
         """
-        pass
+        if n < 2: 
+            return False
+        suma = 0 
+        for i in range(1, n):
+            if n % i == 0:
+                suma += i 
+        return suma == n
+
+
     
     def triangulo_pascal(self, filas):
         """
@@ -74,7 +109,17 @@ class Magic:
         Returns:
             list: Lista de listas que representa el triángulo de Pascal
         """
-        pass
+        triangulo = []
+        for i in range(filas):
+            fila = [1]
+
+            if triangulo :
+                anterior = triangulo[-1]
+                for j in range(1, len(anterior)):
+                    fila.append(anterior[j - 1] + anterior[j])
+                fila.append(1)
+            triangulo.append(fila)
+        return triangulo 
     
     def factorial(self, n):
         """
@@ -85,8 +130,11 @@ class Magic:
             
         Returns:
             int: El factorial de n
-        """
-        pass
+        """      
+        resultado = 1    
+        for i in range (2, n +1 ):
+            resultado *= i
+        return resultado
     
     def mcd(self, a, b):
         """
@@ -99,7 +147,9 @@ class Magic:
         Returns:
             int: El máximo común divisor de a y b
         """
-        pass
+        while b != 0:
+            a, b = b, a%b 
+        return abs(a)
     
     def mcm(self, a, b):
         """
@@ -112,7 +162,11 @@ class Magic:
         Returns:
             int: El mínimo común múltiplo de a y b
         """
-        pass
+        def mcd(x, y):
+            while y != 0:
+                x, y = y, x % y
+            return abs(x)
+        return abs(a*b) // mcd(a, b)
     
     def suma_digitos(self, n):
         """
@@ -124,7 +178,12 @@ class Magic:
         Returns:
             int: La suma de los dígitos de n
         """
-        pass
+        n = abs(n)
+        suma = 0 
+        while n > 0:
+            suma += n% 10 
+            n //= 10 
+        return suma
     
     def es_numero_armstrong(self, n):
         """
@@ -136,7 +195,11 @@ class Magic:
         Returns:
             bool: True si n es un número de Armstrong, False en caso contrario
         """
-        pass
+        n = abs(n)
+        digitos = [int(d) for d in str(n)]
+        num_digitos = len(digitos)
+        suma = sum(d ** num_digitos for d in digitos)
+        return suma == n
     
     def es_cuadrado_magico(self, matriz):
         """
@@ -148,4 +211,29 @@ class Magic:
         Returns:
             bool: True si es un cuadrado mágico, False en caso contrario
         """
-        pass
+        n = len(matriz)
+
+        if not all(len(fila) == n for fila in matriz):
+            return False 
+        
+        suma_objetivo = sum(matriz[0])
+
+        for fila in matriz:
+            if sum(fila) != suma_objetivo:
+                return False 
+            
+        for col in range(n):
+            suma_columna  = sum (matriz[fila][col] for fila in range(n))
+            if suma_columna != suma_objetivo:
+                return False
+        
+        suma_diag1 = sum(matriz[i][i] for i in range(n))
+        if suma_diag1 != suma_objetivo:
+            return False
+        
+        suma_diag2 = sum(matriz[i][n - 1 - i] for i in range(n))
+        if suma_diag2 != suma_objetivo:
+            return False
+
+        return True
+
