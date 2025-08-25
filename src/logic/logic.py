@@ -14,7 +14,9 @@ class Logica:
         Returns:
             bool: Resultado de a AND b
         """
-        pass
+        c = a and b
+        return c
+ 
     
     def OR(self, a, b):
         """
@@ -27,7 +29,8 @@ class Logica:
         Returns:
             bool: Resultado de a OR b
         """
-        pass
+        c = a or b
+        return c
     
     def NOT(self, a):
         """
@@ -39,7 +42,8 @@ class Logica:
         Returns:
             bool: Resultado de NOT a
         """
-        pass
+        c= not a 
+        return c
     
     def XOR(self, a, b):
         """
@@ -52,7 +56,10 @@ class Logica:
         Returns:
             bool: Resultado de a XOR b
         """
-        pass
+        if (a != b):
+            return True 
+        else:
+            return False
     
     def NAND(self, a, b):
         """
@@ -65,7 +72,8 @@ class Logica:
         Returns:
             bool: Resultado de a NAND b
         """
-        pass
+        c = a and b
+        return not c
     
     def NOR(self, a, b):
         """
@@ -78,7 +86,8 @@ class Logica:
         Returns:
             bool: Resultado de a NOR b
         """
-        pass
+        c = a or b
+        return not c
     
     def XNOR(self, a, b):
         """
@@ -91,7 +100,10 @@ class Logica:
         Returns:
             bool: Resultado de a XNOR b
         """
-        pass
+        if (a != b):
+            return not True 
+        else: 
+            return not False
     
     def implicacion(self, a, b):
         """
@@ -104,7 +116,11 @@ class Logica:
         Returns:
             bool: Resultado de la implicación
         """
-        pass
+        if (a == True and b != True):
+            return False
+        else: 
+            return True 
+
     
     def bi_implicacion(self, a, b):
         """
@@ -117,6 +133,9 @@ class Logica:
         Returns:
             bool: Resultado de la bi-implicación
         """
-        pass
+        if (a == b):
+            return True 
+        else: 
+            return False
     
     
